@@ -1,4 +1,4 @@
-package com.security.controller;
+package security.controller.controller;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * @author ymbcxb
  * @title
- * @Package com.security.controller
+ * @Package security.controller.controller
  * @date 2019/8/13 16:49
  */
 @RunWith(SpringRunner.class)

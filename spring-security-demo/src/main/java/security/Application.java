@@ -1,4 +1,4 @@
-package com.security;
+package security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author ymbcxb
  * @title
- * @Package com.security
- * @date 2019/8/13 13:15
+ * @Package security
+ * @date 2019/8/13 20:48
  */
-//@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {
