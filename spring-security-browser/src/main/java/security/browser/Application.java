@@ -1,4 +1,4 @@
-package security;
+package security.browser;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,8 +7,8 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 /**
  * @author ymbcxb
  * @title
- * @Package security
- * @date 2019/8/13 20:48
+ * @Package security.browser
+ * @date 2019/8/14 10:38
  */
 @SpringBootApplication
 @EnableRedisHttpSession

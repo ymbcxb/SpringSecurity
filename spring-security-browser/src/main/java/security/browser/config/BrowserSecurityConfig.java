@@ -1,11 +1,11 @@
 package security.browser.config;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * @author ymbcxb
@@ -16,18 +16,27 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
+    private final AuthenticationSuccessHandler successHandler;
+    private final AuthenticationFailureHandler failureHandler;
+
+    @Autowired
+    public BrowserSecurityConfig(AuthenticationFailureHandler failureHandler, AuthenticationSuccessHandler successHandler) {
+        this.failureHandler = failureHandler;
+        this.successHandler = successHandler;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//      http.httpBasic()
         http.formLogin()
-//        http.httpBasic()
+            .loginPage("/authentication/require")
+            .loginProcessingUrl("/authentication/form")
+            .successHandler(successHandler)
+            .failureHandler(failureHandler)
             .and()
             .authorizeRequests()
+            .antMatchers("/authentication/require","/login.html").permitAll()
             .anyRequest()
-            .authenticated();
-    }
+            .authenticated().and().csrf().disable();
+}
 }
